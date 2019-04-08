@@ -1,0 +1,7 @@
+name: mineinabyss-curse
+version: 1.0
+author: Max
+main: Abysscurse
+api-version: 1.13.2
+loadbefore: #mineinabyss
+prefix: TSC

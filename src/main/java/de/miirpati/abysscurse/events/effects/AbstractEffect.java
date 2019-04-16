@@ -19,7 +19,8 @@ public abstract class AbstractEffect {
     int power;
     boolean delayNotRepeat;
     boolean notCancelled = true;
-    private Plugin instance = Bukkit.getPluginManager().getPlugin("mineinabyss-curse"); //
+    public boolean willSave = false;
+    public Plugin instance = Bukkit.getPluginManager().getPlugin("mineinabyss-curse"); //
 
     AbstractEffect(int delay, int power, long time, int iterations, double probability) {
         this.iterations = iterations;

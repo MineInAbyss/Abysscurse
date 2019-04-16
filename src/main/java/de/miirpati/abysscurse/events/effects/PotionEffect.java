@@ -1,5 +1,6 @@
 package de.miirpati.abysscurse.events.effects;
 
+import de.miirpati.abysscurse.tools.Tools;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.potion.PotionEffectType;
@@ -69,7 +70,7 @@ public class PotionEffect extends AbstractEffect {
         if (entity instanceof LivingEntity) {       //cast Entity to LivingEntity for the effect to be able to apply
             this.living = (LivingEntity) entity;
         } else {
-            Bukkit.getConsoleSender().sendMessage("Warning: PotionEffect Entity is not LivingEntity, ignored.");
+            Tools.warnLog("Warning: PotionEffect Entity is not LivingEntity, ignored.");
         }
     }
 

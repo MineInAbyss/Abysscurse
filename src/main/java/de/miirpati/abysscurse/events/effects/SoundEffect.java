@@ -1,8 +1,12 @@
 package de.miirpati.abysscurse.events.effects;
 
+import de.miirpati.abysscurse.tools.Tools;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
 
@@ -10,19 +14,23 @@ import java.util.ArrayList;
 
 public class SoundEffect extends AbstractEffect{
     ArrayList<Sound> sounds;
-    LivingEntity living;
+    Player player; //I'm assuming at this point that there is no need for sounds with
 
-    public SoundEffect(int delay, int power, long time, int iterations, float multiplier, double probability, ArrayList<Sound> sounds) {
+    public SoundEffect(int delay, int power, long time, int iterations, double probability, ArrayList<Sound> sounds) {
         super(delay, power, time, iterations, probability);
         this.sounds = sounds;
-        if (entity instanceof LivingEntity) {       //cast Entity to LivingEntity for the effect to be able to use
-            this.living = (LivingEntity) entity;
+        if (entity instanceof Player) {       //cast Entity to LivingEntity for the effect to be able to use
+            this.player = (Player) entity;
         } else {
-            Bukkit.getConsoleSender().sendMessage("Warning: SoundEffect Entity is not LivingEntity");
+            Tools.warnLog("Warning: SoundEffect Entity is not Player");
         }
     }
 
     public void effect() {
-        //TODO
+        Location soundLocation = new Vector(Tools.rng.nextDouble(power,power*-1), Tools.rng.nextDouble(power,power*-1), Tools.rng.nextDouble(power,power*-1)).toLocation(player.getWorld()).add(player.getLocation());
+
+        Sound sound = sounds.get(Tools.rng.nextInt(sounds.size()));
+
+        player.playSound(soundLocation, sound, 1f, 1f);
     }
 }

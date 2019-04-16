@@ -48,6 +48,8 @@ public class AbstractEffectEvent extends Event implements Cancellable {
         effect.cancel();
     }
 
+    public void setSaving(boolean willSave) { effect.willSave = willSave;}
+
     public HandlerList getHandlers() {
         return HANDLERS;
     }
